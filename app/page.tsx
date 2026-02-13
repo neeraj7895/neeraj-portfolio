@@ -187,14 +187,14 @@ export default function Home() {
 
           <div className="mt-8 flex justify-center gap-6">
             <a
-              href="mailto:your-email@gmail.com"
+              href="neerajkankauriya@gmail.com"
               className="px-6 py-3 bg-purple-600 rounded-xl hover:bg-purple-700 transition"
             >
               Email Me
             </a>
 
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/neeraj-sharma-27481b190?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
               className="px-6 py-3 border border-purple-400 rounded-xl hover:bg-purple-400 hover:text-black transition"
             >
               LinkedIn
