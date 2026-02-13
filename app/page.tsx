@@ -10,6 +10,28 @@ export default function Home() {
 
       {/* Cursor Glow */}
       <CursorGlow />
+      <div className="mt-8 flex gap-4 flex-wrap">
+
+  {/* View CV */}
+  <a
+    href="/Neeraj_Sharma_CV.pdf"
+    target="_blank"
+    className="px-6 py-3 bg-purple-600 rounded-xl hover:bg-purple-700 transition"
+  >
+    View CV
+  </a>
+
+  {/* Download CV */}
+  <a
+    href="/Neeraj_Sharma_CV.pdf"
+    download
+    className="px-6 py-3 border border-purple-400 rounded-xl hover:bg-purple-400 hover:text-black transition"
+  >
+    Download CV
+  </a>
+
+</div>
+
 
       {/* HERO SECTION */}
       <section className="min-h-screen pt-24 flex items-center">
