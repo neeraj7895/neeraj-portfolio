@@ -1,16 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
+import CursorGlow from "./components/CursorGlow";
+import { Mail, Linkedin } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="bg-gradient-to-br from-black via-gray-900 to-purple-950 text-white">
+    <div className="relative bg-gradient-to-br from-black via-gray-900 to-purple-950 text-white">
+
+      {/* Cursor Glow */}
+      <CursorGlow />
 
       {/* HERO SECTION */}
       <section className="min-h-screen pt-24 flex items-center">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
 
           <div>
+
+            {/* Small Logo */}
+            <div className="mb-6 text-purple-400 font-semibold tracking-widest">
+              NS • Portfolio
+            </div>
+
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -40,6 +51,26 @@ export default function Home() {
               Transforming digital payment workflows and operational data 
               into scalable, secure, and technology-driven business solutions.
             </motion.p>
+
+            {/* Buttons */}
+            <div className="mt-8 flex gap-4">
+              <a
+                href="mailto:neerajkankauriya@gmail.com"
+                className="flex items-center gap-2 px-6 py-3 bg-purple-600 rounded-xl hover:bg-purple-700 transition"
+              >
+                <Mail size={18} />
+                Email
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/neeraj-sharma-27481b190"
+                target="_blank"
+                className="flex items-center gap-2 px-6 py-3 border border-purple-400 rounded-xl hover:bg-purple-400 hover:text-black transition"
+              >
+                <Linkedin size={18} />
+                LinkedIn
+              </a>
+            </div>
           </div>
 
           <motion.div
@@ -62,15 +93,9 @@ export default function Home() {
       {/* ABOUT */}
       <section id="about" className="py-24 bg-black">
         <div className="max-w-6xl mx-auto px-6">
-          <motion.h2
-            whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 40 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-4xl font-bold text-purple-400"
-          >
+          <h2 className="text-4xl font-bold text-purple-400">
             About Me
-          </motion.h2>
+          </h2>
 
           <p className="mt-6 text-gray-400 max-w-3xl">
             FinTech Operations and Digital Technology professional with 3+ years of experience 
@@ -106,7 +131,6 @@ export default function Home() {
           </h2>
 
           <div className="space-y-12">
-
             <div className="border-l-4 border-purple-500 pl-6">
               <h3 className="text-xl font-semibold">
                 Senior Operations Analyst – OneStack Solutions
@@ -126,82 +150,14 @@ export default function Home() {
                 and strengthened data pipeline reliability.
               </p>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* PROJECTS */}
-      <section id="projects" className="py-24 bg-black">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-purple-400 mb-12">
-            Key Projects
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-
-            <div className="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:scale-105 transition">
-              <h3 className="text-lg font-semibold">
-                Digital Payment Workflow Optimization
-              </h3>
-              <p className="mt-4 text-gray-400 text-sm">
-                Improved visibility of transaction flows and reduced operational delays 
-                through structured automation and reporting.
-              </p>
-            </div>
-
-            <div className="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:scale-105 transition">
-              <h3 className="text-lg font-semibold">
-                Escalation Analytics System
-              </h3>
-              <p className="mt-4 text-gray-400 text-sm">
-                Built structured data insights for ticket resolution, 
-                improving SLA adherence and response time.
-              </p>
-            </div>
-
-            <div className="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:scale-105 transition">
-              <h3 className="text-lg font-semibold">
-                Operational KPI Automation
-              </h3>
-              <p className="mt-4 text-gray-400 text-sm">
-                Automated recurring MIS dashboards enabling faster 
-                executive-level decision making.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section id="contact" className="py-24 bg-gray-950">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-purple-400">
-            Let’s Connect
-          </h2>
-
-          <p className="mt-6 text-gray-400">
-            Open to FinTech, Digital Banking, and Data-driven Operations roles.
-          </p>
-
-          <div className="mt-8 flex justify-center gap-6">
-            <a
-              href="neerajkankauriya@gmail.com"
-              className="px-6 py-3 bg-purple-600 rounded-xl hover:bg-purple-700 transition"
-            >
-              Email Me
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/neeraj-sharma-27481b190?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-              className="px-6 py-3 border border-purple-400 rounded-xl hover:bg-purple-400 hover:text-black transition"
-            >
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* FOOTER */}
+      <footer className="py-8 bg-black text-center text-gray-500 text-sm border-t border-gray-800">
+        Designed and created by <span className="text-purple-400">Neeraj Sharma</span>
+      </footer>
 
     </div>
   );
