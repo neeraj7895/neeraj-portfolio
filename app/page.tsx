@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import CursorGlow from "./components/CursorGlow";
-import { Mail, Linkedin, Github, Download, ExternalLink } from "lucide-react";
+import { Mail, Linkedin, Github, Download, ExternalLink, Code2, Zap, TrendingUp, BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -57,17 +57,17 @@ export default function Home() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black leading-tight">
-              Hi, I'm <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">Neeraj Sharma</span>
+              Hi, I'm <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">Neeraj</span>
             </h1>
 
             <h2 className="mt-6 text-2xl md:text-3xl text-gray-300 font-light">
-              FinTech Operations Analyst
+              Senior Operations Analyst
             </h2>
 
-            <p className="mt-2 text-gray-400 text-sm">Digital Banking | Automation | Analytics</p>
+            <p className="mt-2 text-gray-400 text-sm">FinTech | Digital Banking | Data Analytics</p>
 
             <p className="mt-6 text-gray-400 max-w-xl leading-relaxed">
-              Transforming digital payment workflows and operational data into scalable, secure, and technology-driven business solutions.
+              3+ years driving operational excellence in FinTech. Specialized in transaction monitoring, process automation, and building scalable Power BI dashboards. Led teams to deliver 30-35% efficiency gains through data-driven solutions.
             </p>
 
             {/* Achievement Box */}
@@ -80,19 +80,19 @@ export default function Home() {
               <div className="space-y-3 text-sm">
                 <div className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
-                  <span>3+ Years in FinTech Operations</span>
+                  <span>30-35% Manual Workload Reduction via Automation</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
-                  <span>35% Automation Efficiency Gain</span>
+                  <span>Led 4-Member Team on Process Optimization</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
-                  <span>Digital Banking Workflow Optimization</span>
+                  <span>Expert in Power BI, SQL Server & Data Modeling</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
-                  <span>Team Leadership & Cross-functional Delivery</span>
+                  <span>Transaction Monitoring & SLA Compliance Specialist</span>
                 </div>
               </div>
             </motion.div>
@@ -138,8 +138,9 @@ export default function Home() {
             className="hidden md:block"
           >
             <div className="bg-gradient-to-br from-purple-900/20 to-gray-800/20 p-8 rounded-3xl border border-purple-500/20 backdrop-blur-sm">
+              <p className="text-xs text-purple-300 font-semibold mb-4">TECH STACK</p>
               <div className="grid grid-cols-2 gap-4">
-                {['Power BI', 'SQL', 'Python', 'Tableau', 'Excel', 'Analytics', 'Automation', 'Leadership'].map((tech, i) => (
+                {['Power BI', 'SQL Server', 'Python', 'Tableau', 'Azure DevOps', 'ETL', 'BMC Remedy', 'JIRA'].map((tech, i) => (
                   <motion.div
                     key={i}
                     whileHover={{ y: -5 }}
@@ -172,7 +173,7 @@ export default function Home() {
             transition={{ delay: 0.2 }}
             className="mt-6 text-gray-400 max-w-3xl leading-relaxed"
           >
-            FinTech Operations and Digital Technology professional with 3+ years of experience in digital banking, transaction monitoring, automation, and operational analytics. I specialize in optimizing payment workflows, strengthening compliance controls, and implementing data-driven operational strategies.
+            FinTech Operations and Digital Banking specialist with 3+ years of hands-on experience in transaction monitoring, escalation handling, and operational management. I excel at identifying automation opportunities, building scalable Power BI dashboards, and leading cross-functional teams to deliver measurable results. Passionate about data-driven decision-making and process optimization.
           </motion.p>
 
           <motion.div
@@ -182,8 +183,8 @@ export default function Home() {
             className="grid md:grid-cols-3 gap-8 mt-16"
           >
             {[
-              { number: '3+', label: 'Years FinTech Experience' },
-              { number: '35%', label: 'Efficiency Improvement' },
+              { number: '3+', label: 'Years FinTech Operations' },
+              { number: '30-35%', label: 'Efficiency Improvement' },
               { number: '4', label: 'Team Members Led' }
             ].map((stat, i) => (
               <motion.div
@@ -213,16 +214,21 @@ export default function Home() {
           <div className="space-y-8">
             {[
               {
-                title: 'Senior Operations Analyst',
+                title: 'Senior Operations Analyst (Assistant Manager)',
                 company: 'OneStack Solutions Pvt. Ltd.',
                 period: 'Oct 2023 - Present',
-                description: 'Digital Banking | FinTech Operations',
+                description: 'FinTech – Digital Banking',
                 highlights: [
-                  'Managed 4-member team for process optimization and automation',
-                  'Reduced 30-35% manual work through automation and SQL optimization',
-                  'Built interactive Power BI dashboards for HR, Payroll, and KPI tracking',
-                  'Coordinated cross-functional teams (Product, Engineering, Customer Success)'
-                ]
+                  'Managed 4-member team focused on process optimization and automation',
+                  'Monitored transaction flows, settlement issues, and system-level escalations',
+                  'Reduced 30-35% manual workload through automation and workflow optimization',
+                  'Created Power BI dashboards for HR Payroll, Attendance KPI, and Team Attrition',
+                  'Coordinated with product, engineering, and customer success teams for faster resolution',
+                  'Handled high-priority escalations ensuring minimal downtime and SLA adherence',
+                  'Designed data models and Power BI reports with admin-level role management',
+                  'Supported UAT for operational changes and new feature rollouts'
+                ],
+                tech: ['Power BI', 'SQL Server', 'ETL', 'BMC Remedy', 'JIRA', 'Azure DevOps']
               },
               {
                 title: 'Associate Data Engineer',
@@ -230,10 +236,15 @@ export default function Home() {
                 period: 'Apr 2022 - Mar 2023',
                 description: 'Data Engineering | Infrastructure Support',
                 highlights: [
-                  'Developed core skills in SQL, Power BI, and Advanced Excel',
+                  'Developed core skills in SQL, Power BI, Oracle BI, and Advanced Excel',
                   'Built data pipelines and ETL processes for operational reporting',
-                  'Supported system monitoring and application deployment'
-                ]
+                  'Supported system monitoring, application deployment, and issue resolution',
+                  'Handled client queries using BMC Remedy and ESH Help Desk tools',
+                  'Worked with cross-functional teams to troubleshoot system stability',
+                  'Built reports using Power BI Desktop and Tableau',
+                  'Created data models for analytics and business intelligence'
+                ],
+                tech: ['Power BI', 'SQL Server', 'Tableau', 'ETL', 'Excel', 'SharePoint']
               }
             ].map((job, i) => (
               <motion.div
@@ -252,7 +263,7 @@ export default function Home() {
                   <span className="text-xs bg-purple-500/20 px-3 py-1 rounded-full text-purple-300">{job.period}</span>
                 </div>
                 <p className="text-gray-400 mb-4 text-sm">{job.description}</p>
-                <ul className="space-y-2 text-gray-300 text-sm">
+                <ul className="space-y-2 text-gray-300 text-sm mb-4">
                   {job.highlights.map((highlight, j) => (
                     <li key={j} className="flex gap-2">
                       <span className="text-purple-400">▸</span>
@@ -260,6 +271,13 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+                <div className="flex flex-wrap gap-2">
+                  {job.tech.map((t, j) => (
+                    <span key={j} className="px-2 py-1 bg-purple-500/20 text-purple-200 rounded text-xs">
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -280,28 +298,36 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="grid md:grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {[
               {
-                title: '📊 Analytics & Reporting',
-                skills: ['Power BI', 'Tableau', 'Advanced Excel', 'Google Data Studio', 'DAX']
+                icon: '📊',
+                title: 'Analytics & BI',
+                skills: ['Power BI', 'Tableau', 'Oracle BI', 'Excel', 'Dashboards', 'KPI Tracking']
               },
               {
-                title: '⚡ Databases & ETL',
-                skills: ['SQL Server', 'MySQL', 'Data Warehouse', 'ETL Pipelines', 'Data Modeling']
+                icon: '⚡',
+                title: 'Databases & ETL',
+                skills: ['SQL Server', 'MySQL', 'Data Warehouse', 'ETL Pipelines', 'Data Modeling', 'Query Optimization']
               },
               {
-                title: '🚀 Automation & Tools',
-                skills: ['Python', 'Azure DevOps', 'JIRA', 'SharePoint', 'BMC Remedy']
+                icon: '🚀',
+                title: 'Business Tools',
+                skills: ['BMC Remedy', 'JIRA', 'SharePoint', 'Confluence', 'Azure DevOps', 'UAT Tools']
+              },
+              {
+                icon: '💻',
+                title: 'Programming',
+                skills: ['Python', 'SQL', 'DAX', 'Power Query', 'VBA', 'Data Manipulation']
               }
             ].map((category, i) => (
               <motion.div
                 key={i}
                 whileHover={{ y: -5 }}
-                className="group p-8 bg-gradient-to-br from-purple-500/5 to-cyan-500/5 border border-purple-500/20 rounded-2xl hover:border-purple-500/60 transition-all"
+                className="group p-6 bg-gradient-to-br from-purple-500/5 to-cyan-500/5 border border-purple-500/20 rounded-2xl hover:border-purple-500/60 transition-all"
               >
-                <h3 className="text-xl font-bold mb-4">{category.title}</h3>
+                <h3 className="text-lg font-bold mb-4">{category.icon} {category.title}</h3>
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, j) => (
                     <span key={j} className="px-3 py-1 bg-purple-500/20 text-purple-200 rounded-full text-xs font-medium group-hover:bg-cyan-500/20 group-hover:text-cyan-200 transition-all">
@@ -315,15 +341,60 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PROJECTS SECTION */}
-      <section id="projects" className="relative py-24">
+      {/* CORE COMPETENCIES SECTION */}
+      <section className="relative py-24">
         <div className="max-w-6xl mx-auto px-6">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-5xl font-black bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-16"
           >
-            Key Projects
+            Core Competencies
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {[
+              'Daily Operations Management',
+              'Transaction Workflow Monitoring',
+              'Escalation Handling & Resolution',
+              'Payment Operations & Reconciliation',
+              'Settlement Monitoring',
+              'SLA Tracking & Compliance',
+              'Operational Risk Controls',
+              'Process Optimization & SOP Development',
+              'Quality Checks & Data Governance',
+              'UAT Coordination',
+              'Cross-functional Team Leadership',
+              'Automation Implementation'
+            ].map((competency, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ x: 5 }}
+                className="p-4 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 border border-purple-500/20 rounded-lg hover:border-purple-500/60 transition-all"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                  <span className="text-gray-300">{competency}</span>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* PROJECTS SECTION */}
+      <section id="projects" className="relative py-24 bg-black/30">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-5xl font-black bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-16"
+          >
+            Key Projects & Achievements
           </motion.h2>
 
           <motion.div
@@ -334,27 +405,31 @@ export default function Home() {
             {[
               {
                 title: 'HR Analytics Dashboard',
-                description: 'Interactive Power BI dashboard for payroll, attendance KPI tracking, and team attrition analysis',
-                tech: ['Power BI', 'SQL', 'Excel'],
-                impact: '40% faster reporting'
+                description: 'Built interactive Power BI dashboard for HR Payroll, Attendance KPI tracking, and Team Attrition analysis. Enabled self-service reporting for management.',
+                tech: ['Power BI', 'SQL Server', 'Excel', 'DAX'],
+                impact: 'Faster HR reporting & insights',
+                metrics: 'Real-time tracking'
               },
               {
-                title: 'Payment Operations Automation',
-                description: 'Automated transaction monitoring and settlement workflow optimization for digital banking',
-                tech: ['Python', 'SQL', 'ETL'],
-                impact: '35% efficiency gain'
+                title: 'Transaction Monitoring System',
+                description: 'Implemented enhanced transaction flow monitoring and settlement issue tracking. Improved escalation handling accuracy and reduced operational delays.',
+                tech: ['SQL Server', 'Power BI', 'ETL', 'BMC Remedy'],
+                impact: '30-35% efficiency gain',
+                metrics: 'Reduced manual work significantly'
               },
               {
                 title: 'Operational MIS Platform',
-                description: 'End-to-end BI solution for operations management with real-time KPI monitoring',
-                tech: ['Power BI Service', 'SQL Server', 'DAX'],
-                impact: '50+ users'
+                description: 'Designed end-to-end BI solution for operations management with real-time KPI monitoring, SLA tracking, and compliance reporting.',
+                tech: ['Power BI Service', 'SQL Server', 'DAX', 'Azure DevOps'],
+                impact: 'Enterprise-wide adoption',
+                metrics: 'Cross-team visibility & insights'
               },
               {
                 title: 'Data Quality Framework',
-                description: 'Implemented governance and data quality checks for compliance and audit readiness',
-                tech: ['SQL', 'Python', 'Tableau'],
-                impact: '99.5% accuracy'
+                description: 'Implemented governance and data quality checks for compliance and audit readiness. Created automated data validation pipelines.',
+                tech: ['SQL', 'Python', 'Tableau', 'ETL'],
+                impact: '99.5% data accuracy',
+                metrics: 'Audit-ready compliance'
               }
             ].map((project, i) => (
               <motion.div
@@ -371,8 +446,64 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
-                <div className="pt-4 border-t border-purple-500/20 text-sm text-cyan-400 font-semibold">
-                  Impact: {project.impact}
+                <div className="pt-4 border-t border-purple-500/20">
+                  <p className="text-sm text-cyan-400 font-semibold">{project.impact}</p>
+                  <p className="text-xs text-gray-500 mt-1">{project.metrics}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* EDUCATION SECTION */}
+      <section className="relative py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-5xl font-black bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-12"
+          >
+            Education
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="space-y-6"
+          >
+            {[
+              {
+                degree: 'MCA - Computer Science',
+                school: 'Chandigarh University',
+                year: 'Expected 2026',
+                icon: '🎓'
+              },
+              {
+                degree: 'BCA - Computer Science',
+                school: 'Poornima University, Jaipur',
+                year: '2021',
+                icon: '📚'
+              },
+              {
+                degree: '12th (PCM)',
+                school: 'S.A.B Inter College, Agra',
+                year: '2018',
+                icon: '✏️'
+              }
+            ].map((edu, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ x: 5 }}
+                className="group border-l-4 border-purple-500 pl-8 py-4 hover:border-cyan-500 transition-colors relative"
+              >
+                <div className="absolute -left-3 top-4 w-5 h-5 bg-purple-500 rounded-full group-hover:bg-cyan-500 transition-colors"></div>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-xl font-bold">{edu.degree}</h3>
+                    <p className="text-purple-400 font-semibold text-sm mt-1">{edu.school}</p>
+                  </div>
+                  <span className="text-xs bg-purple-500/20 px-3 py-1 rounded-full text-purple-300">{edu.year}</span>
                 </div>
               </motion.div>
             ))}
@@ -397,7 +528,7 @@ export default function Home() {
             transition={{ delay: 0.2 }}
             className="text-xl text-gray-400 mb-12"
           >
-            I'm always interested in collaborating on innovative projects and exploring new opportunities.
+            Open to FinTech, Digital Banking, and Data-driven Operations roles. Let's build something amazing together!
           </motion.p>
 
           {/* Contact Buttons */}
@@ -436,16 +567,24 @@ export default function Home() {
             </a>
           </motion.div>
 
-          <p className="text-gray-400">
-            Email: <a href="mailto:neerajkankauriya@gmail.com" className="text-purple-400 hover:text-cyan-400 font-semibold transition-colors">neerajkankauriya@gmail.com</a>
-          </p>
+          <div className="space-y-2">
+            <p className="text-gray-400">
+              Email: <a href="mailto:neerajkankauriya@gmail.com" className="text-purple-400 hover:text-cyan-400 font-semibold transition-colors">neerajkankauriya@gmail.com</a>
+            </p>
+            <p className="text-gray-400">
+              Phone: <span className="text-purple-400 font-semibold">+91-7895272496</span>
+            </p>
+            <p className="text-gray-400">
+              Location: <span className="text-purple-400 font-semibold">Gurugram, Haryana</span>
+            </p>
+          </div>
         </div>
       </section>
 
       {/* FOOTER */}
       <footer className="relative border-t border-purple-500/20 py-8 px-6 bg-black/50">
         <div className="max-w-6xl mx-auto text-center text-gray-500 text-sm">
-          <p>© Developed By Neeraj Sharma</p>
+          <p>© 2025 Neeraj Sharma. Built with Next.js, React, Framer Motion, and Tailwind CSS. Deployed on Vercel.</p>
         </div>
       </footer>
 
