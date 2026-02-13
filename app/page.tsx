@@ -445,7 +445,7 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="relative border-t border-purple-500/20 py-8 px-6 bg-black/50">
         <div className="max-w-6xl mx-auto text-center text-gray-500 text-sm">
-          <p>© 2025 Neeraj Sharma. Built with Next.js, React, Framer Motion, and Tailwind CSS. Deployed on Vercel.</p>
+          <p>© Developed By Neeraj Sharma</p>
         </div>
       </footer>
 
