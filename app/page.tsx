@@ -214,8 +214,8 @@ export default function Home() {
               whileHover={{ y: -10 }}
               className="relative group"
             >
-              {/* Image container */}
-              <div className="relative w-80 h-80 rounded-2xl overflow-hidden border-2 border-purple-500/30 group-hover:border-purple-500/60 transition-all">
+              {/* Image container - Rounded & Smaller */}
+              <div className="relative w-64 h-64 rounded-full overflow-hidden border-2 border-purple-500/30 group-hover:border-purple-500/60 transition-all">
                 <Image
                   src="/profile.png"
                   alt="Neeraj Sharma"
