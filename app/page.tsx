@@ -105,26 +105,26 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-block"
+              className="inline-block max-w-full"
             >
-              <span className="px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 text-sm font-semibold text-gray-300">
+              <span className="px-3 md:px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 text-xs md:text-sm font-semibold text-gray-300 break-words">
                 Operations Analyst | Product Analyst | Business Intelligence
               </span>
             </motion.div>
 
             {/* Professional Name */}
             <div className="space-y-4">
-              <h1 className="text-7xl md:text-8xl font-black tracking-tighter leading-none">
+              <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-tight md:leading-none break-words">
                 <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
                   Neeraj Sharma
                 </span>
               </h1>
               
               <div className="space-y-2">
-                <h2 className="text-2xl md:text-3xl text-cyan-400 font-bold">
+                <h2 className="text-xl md:text-3xl text-cyan-400 font-bold break-words">
                   Senior Operations Analyst
                 </h2>
-                <p className="text-lg text-gray-400">FinTech | Digital Banking | Automation & AI/ML Operations</p>
+                <p className="text-sm md:text-lg text-gray-400">FinTech | Digital Banking | Automation & AI/ML Operations</p>
               </div>
             </div>
 
@@ -133,7 +133,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-lg text-gray-400 leading-relaxed max-w-2xl"
+              className="text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl"
             >
               3+ years specializing in business automation, operational analytics, and AI/ML implementation. Proven expertise in process optimization, data-driven decision making, and leading teams to deliver measurable business impact.
             </motion.p>
@@ -143,7 +143,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="grid grid-cols-2 gap-4"
+              className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-2xl"
             >
               {[
                 { label: '3+', value: 'Years' },
@@ -156,10 +156,10 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + i * 0.08 }}
-                  className="p-4 rounded-lg bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border border-purple-500/20"
+                  className="p-3 md:p-4 rounded-lg bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border border-purple-500/20"
                 >
-                  <div className="text-xl font-bold text-purple-400">{item.label}</div>
-                  <div className="text-xs text-gray-400">{item.value}</div>
+                  <div className="text-lg md:text-xl font-bold text-purple-400">{item.label}</div>
+                  <div className="text-xs md:text-sm text-gray-400 mt-1">{item.value}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -169,15 +169,15 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="flex flex-wrap gap-4 pt-4"
+              className="flex flex-wrap justify-center md:justify-start gap-3 md:gap-4 pt-4"
             >
               <motion.a
                 href="mailto:neerajkankauriya@gmail.com"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center gap-2"
+                className="px-6 md:px-8 py-2 md:py-3 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg font-semibold text-sm md:text-base hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center gap-2"
               >
-                <Mail size={18} />
+                <Mail size={16} className="md:w-[18px] md:h-[18px]" />
                 Get In Touch
               </motion.a>
 
@@ -185,7 +185,7 @@ export default function Home() {
                 href="#projects"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 border border-purple-400/50 rounded-lg font-semibold hover:bg-purple-400/10 transition-colors"
+                className="px-6 md:px-8 py-2 md:py-3 border border-purple-400/50 rounded-lg font-semibold text-sm md:text-base hover:bg-purple-400/10 transition-colors"
               >
                 View Work
               </motion.a>
@@ -195,9 +195,9 @@ export default function Home() {
                 download
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 border border-cyan-400/50 rounded-lg font-semibold hover:bg-cyan-400/10 transition-colors flex items-center gap-2"
+                className="px-6 md:px-8 py-2 md:py-3 border border-cyan-400/50 rounded-lg font-semibold text-sm md:text-base hover:bg-cyan-400/10 transition-colors flex items-center gap-2"
               >
-                <Download size={18} />
+                <Download size={16} className="md:w-[18px] md:h-[18px]" />
                 CV
               </motion.a>
             </motion.div>
