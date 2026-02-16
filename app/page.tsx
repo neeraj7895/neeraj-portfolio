@@ -108,7 +108,7 @@ export default function Home() {
               className="inline-block max-w-full"
             >
               <span className="px-3 md:px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 text-xs md:text-sm font-semibold text-gray-300 break-words">
-                Operations Analyst | Product Analyst | Business Intelligence
+                Portfolio
               </span>
             </motion.div>
 
