@@ -2,16 +2,25 @@
 
 import { motion } from "framer-motion";
 import CursorGlow from "./components/CursorGlow";
-import { Mail, Linkedin, Github, Download, ExternalLink, Code2, Zap, TrendingUp, BookOpen } from "lucide-react";
+import { Mail, Linkedin, Github, Download, Code2, Zap, TrendingUp, BookOpen, ArrowRight, ExternalLink } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
   return (
@@ -19,14 +28,35 @@ export default function Home() {
       {/* Cursor Glow */}
       <CursorGlow />
 
-      {/* Animated Background */}
+      {/* Premium Animated Background */}
       <div className="fixed inset-0 -z-10">
-        {/* Gradient orbs */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        {/* Animated gradient orbs */}
+        <motion.div
+          animate={{
+            x: [0, 50, -50, 0],
+            y: [0, -50, 50, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity }}
+          className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+        />
+        <motion.div
+          animate={{
+            x: [0, -50, 50, 0],
+            y: [0, 50, -50, 0],
+          }}
+          transition={{ duration: 25, repeat: Infinity }}
+          className="absolute top-1/3 right-1/4 w-96 h-96 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+        />
+        <motion.div
+          animate={{
+            x: [0, 30, -30, 0],
+            y: [0, -30, 30, 0],
+          }}
+          transition={{ duration: 22, repeat: Infinity }}
+          className="absolute bottom-0 left-1/2 w-96 h-96 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+        />
 
-        {/* Grid */}
+        {/* Animated grid */}
         <svg className="absolute inset-0 w-full h-full opacity-5" style={{ transform: `translateY(${scrollY * 0.5}px)` }}>
           <defs>
             <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
@@ -36,182 +66,250 @@ export default function Home() {
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
 
-        {/* Data nodes */}
-        <div className="absolute top-20 left-10 w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
-        <div className="absolute top-1/3 right-20 w-2 h-2 bg-cyan-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-        <div className="absolute bottom-1/3 left-1/3 w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+        {/* Floating particles */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              delay: i * 0.5,
+            }}
+            className="absolute w-2 h-2 bg-cyan-500 rounded-full blur-sm"
+            style={{
+              top: `${20 + i * 15}%`,
+              left: `${10 + i * 15}%`,
+            }}
+          />
+        ))}
       </div>
 
       {/* HERO SECTION */}
-      <section className="relative min-h-screen pt-24 flex items-center">
-        <div className="max-w-6xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
-
+      <section className="relative min-h-screen pt-32 flex items-center justify-center">
+        <div className="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="space-y-8"
           >
-            {/* Small Logo */}
-            <div className="mb-6 text-purple-400 font-semibold tracking-widest text-sm">
-              NS • PORTFOLIO
+            <div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="inline-block mb-4"
+              >
+                <span className="px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+                  👋 Welcome to my portfolio
+                </span>
+              </motion.div>
+
+              <h1 className="text-6xl md:text-7xl font-black leading-tight">
+                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+                  Neeraj Sharma
+                </span>
+              </h1>
+
+              <h2 className="text-3xl md:text-4xl text-gray-300 font-light mt-4">
+                Senior Operations Analyst
+              </h2>
+
+              <p className="mt-4 text-lg text-gray-400">FinTech | Digital Banking | Data Analytics</p>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-black leading-tight">
-              Hi, I'm <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">Neeraj</span>
-            </h1>
-
-            <h2 className="mt-6 text-2xl md:text-3xl text-gray-300 font-light">
-              Senior Operations Analyst
-            </h2>
-
-            <p className="mt-2 text-gray-400 text-sm">FinTech | Digital Banking | Data Analytics</p>
-
-            <p className="mt-6 text-gray-400 max-w-xl leading-relaxed">
+            <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
               3+ years driving operational excellence in FinTech. Specialized in transaction monitoring, process automation, and building scalable Power BI dashboards. Led teams to deliver 30-35% efficiency gains through data-driven solutions.
             </p>
 
-            {/* Achievement Box */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="mt-8 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border border-purple-500/20 rounded-2xl p-6 backdrop-blur-sm"
-            >
-              <div className="space-y-3 text-sm">
-                <div className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>30-35% Manual Workload Reduction via Automation</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>Led 4-Member Team on Process Optimization</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>Expert in Power BI, SQL Server & Data Modeling</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>Transaction Monitoring & SLA Compliance Specialist</span>
-                </div>
-              </div>
-            </motion.div>
+            {/* Achievement Pills */}
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { label: '3+', value: 'Years Experience' },
+                { label: '30-35%', value: 'Efficiency Gain' },
+                { label: '4', value: 'Team Members' },
+                { label: 'FinTech', value: 'Specialist' },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 + i * 0.1 }}
+                  className="group p-4 rounded-xl bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border border-purple-500/20 hover:border-purple-500/60 hover:bg-gradient-to-br hover:from-purple-500/20 hover:to-cyan-500/20 transition-all cursor-default"
+                >
+                  <div className="text-2xl font-black text-purple-400">{item.label}</div>
+                  <div className="text-sm text-gray-400 mt-1">{item.value}</div>
+                </motion.div>
+              ))}
+            </div>
 
-            {/* CTA Buttons */}
+            {/* Premium CTA Buttons */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-8 flex flex-wrap gap-4"
+              transition={{ delay: 0.6 }}
+              className="flex flex-wrap gap-4 pt-4"
             >
-              <a
+              {/* Primary Button - Neon Glow */}
+              <motion.a
                 href="mailto:neerajkankauriya@gmail.com"
-                className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative px-8 py-4 rounded-xl font-semibold text-white overflow-hidden"
               >
-                <Mail size={18} />
-                Get In Touch
-              </a>
+                {/* Glow effect background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-cyan-500 to-purple-500 rounded-xl opacity-75 group-hover:opacity-100 transition-opacity duration-300 blur-md" />
+                {/* Main background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-xl" />
+                {/* Text */}
+                <span className="relative flex items-center gap-2">
+                  <Mail size={18} />
+                  Get In Touch
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </span>
+              </motion.a>
 
-              <a
+              {/* Secondary Button - Gradient Border */}
+              <motion.a
                 href="#projects"
-                className="px-6 py-3 border border-purple-400/50 rounded-lg font-semibold hover:bg-purple-400/10 transition-colors"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative px-8 py-4 rounded-xl font-semibold text-white overflow-hidden"
               >
-                View My Work
-              </a>
+                <div className="absolute inset-0 rounded-xl p-[2px] bg-gradient-to-r from-purple-500 to-cyan-500">
+                  <div className="absolute inset-[2px] bg-black rounded-[10px] group-hover:bg-white/5 transition-all" />
+                </div>
+                <span className="relative flex items-center gap-2">
+                  <Code2 size={18} />
+                  View My Work
+                </span>
+              </motion.a>
 
-              <a
+              {/* Tertiary Button - Glass Effect */}
+              <motion.a
                 href="/Neeraj_Sharma_CV.pdf"
                 download
-                className="flex items-center gap-2 px-6 py-3 border border-cyan-400/50 rounded-lg font-semibold hover:bg-cyan-400/10 transition-colors"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="group px-8 py-4 rounded-xl font-semibold text-white backdrop-blur-md border border-white/20 hover:border-white/40 hover:bg-white/10 transition-all"
               >
-                <Download size={18} />
-                Download CV
-              </a>
+                <span className="flex items-center gap-2">
+                  <Download size={18} />
+                  Download CV
+                </span>
+              </motion.a>
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Tech Stack Visual */}
+          {/* Right Side - Tech Stack Grid */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             className="hidden md:block"
           >
-            <div className="bg-gradient-to-br from-purple-900/20 to-gray-800/20 p-8 rounded-3xl border border-purple-500/20 backdrop-blur-sm">
-              <p className="text-xs text-purple-300 font-semibold mb-4">TECH STACK</p>
-              <div className="grid grid-cols-2 gap-4">
-                {['Power BI', 'SQL Server', 'Python', 'Tableau', 'Azure DevOps', 'ETL', 'BMC Remedy', 'JIRA'].map((tech, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ y: -5 }}
-                    className="flex items-center justify-center bg-black/40 rounded-lg border border-purple-500/30 hover:border-purple-500/60 transition-all cursor-pointer p-4"
-                  >
-                    <span className="font-semibold text-sm text-gray-300 group-hover:text-purple-400">{tech}</span>
-                  </motion.div>
-                ))}
-              </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { icon: '⚡', name: 'Power BI', level: 'Expert' },
+                { icon: '🔧', name: 'SQL Server', level: 'Expert' },
+                { icon: '📊', name: 'Analytics', level: 'Advanced' },
+                { icon: '🚀', name: 'Automation', level: 'Advanced' },
+                { icon: '💾', name: 'ETL', level: 'Intermediate' },
+                { icon: '🎯', name: 'Azure DevOps', level: 'Intermediate' },
+                { icon: '📈', name: 'Tableau', level: 'Proficient' },
+                { icon: '🐍', name: 'Python', level: 'Proficient' },
+              ].map((tech, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + i * 0.08 }}
+                  whileHover={{ y: -5, scale: 1.05 }}
+                  className="group p-4 rounded-2xl bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border border-purple-500/20 hover:border-purple-500/60 hover:bg-gradient-to-br hover:from-purple-500/20 hover:to-cyan-500/20 transition-all cursor-pointer"
+                >
+                  <div className="text-2xl mb-2">{tech.icon}</div>
+                  <div className="font-semibold text-white text-sm">{tech.name}</div>
+                  <div className="text-xs text-purple-300 mt-1">{tech.level}</div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* ABOUT SECTION */}
-      <section id="about" className="relative py-24 bg-black/30">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.h2
+      <section id="about" className="relative py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl font-black bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
+            className="mb-16"
           >
-            About Me
-          </motion.h2>
+            <h2 className="text-5xl font-black mb-4">
+              <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                About Me
+              </span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full" />
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="mt-6 text-gray-400 max-w-3xl leading-relaxed"
+            className="text-lg text-gray-400 leading-relaxed max-w-3xl mb-12"
           >
             FinTech Operations and Digital Banking specialist with 3+ years of hands-on experience in transaction monitoring, escalation handling, and operational management. I excel at identifying automation opportunities, building scalable Power BI dashboards, and leading cross-functional teams to deliver measurable results. Passionate about data-driven decision-making and process optimization.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="grid md:grid-cols-3 gap-8 mt-16"
-          >
+          {/* Stats Grid */}
+          <div className="grid md:grid-cols-3 gap-8">
             {[
-              { number: '3+', label: 'Years FinTech Operations' },
-              { number: '30-35%', label: 'Efficiency Improvement' },
-              { number: '4', label: 'Team Members Led' }
+              { icon: Code2, label: 'Experience', value: '3+ Years', description: 'FinTech Operations' },
+              { icon: Zap, label: 'Efficiency', value: '30-35%', description: 'Improvement Delivered' },
+              { icon: TrendingUp, label: 'Leadership', value: '4 Members', description: 'Team Size' },
             ].map((stat, i) => (
               <motion.div
                 key={i}
-                whileHover={{ y: -5 }}
-                className="bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border border-purple-500/20 rounded-2xl p-8 hover:border-purple-500/60 transition-all"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="group p-8 rounded-2xl bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border border-purple-500/20 hover:border-purple-500/60 hover:from-purple-500/20 hover:to-cyan-500/20 transition-all"
               >
-                <h3 className="text-4xl font-bold text-purple-400">{stat.number}</h3>
-                <p className="mt-2 text-gray-400">{stat.label}</p>
+                <stat.icon className="w-12 h-12 text-purple-400 mb-4 group-hover:text-cyan-400 transition-colors" />
+                <div className="text-4xl font-black text-white mb-2">{stat.value}</div>
+                <div className="font-semibold text-gray-300 mb-1">{stat.label}</div>
+                <div className="text-sm text-gray-500">{stat.description}</div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* EXPERIENCE SECTION */}
-      <section id="experience" className="relative py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.h2
+      <section className="relative py-32 px-6 bg-gradient-to-b from-black via-purple-950/10 to-black">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-5xl font-black bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-12"
+            className="mb-16"
           >
-            Experience
-          </motion.h2>
+            <h2 className="text-5xl font-black mb-4">
+              <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                Experience
+              </span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full" />
+          </motion.div>
 
-          <div className="space-y-8">
+          <div className="space-y-12">
             {[
               {
                 title: 'Senior Operations Analyst (Assistant Manager)',
@@ -219,63 +317,179 @@ export default function Home() {
                 period: 'Oct 2023 - Present',
                 description: 'FinTech – Digital Banking',
                 highlights: [
-                  'Managed 4-member team focused on process optimization and automation',
-                  'Monitored transaction flows, settlement issues, and system-level escalations',
-                  'Reduced 30-35% manual workload through automation and workflow optimization',
-                  'Created Power BI dashboards for HR Payroll, Attendance KPI, and Team Attrition',
-                  'Coordinated with product, engineering, and customer success teams for faster resolution',
-                  'Handled high-priority escalations ensuring minimal downtime and SLA adherence',
-                  'Designed data models and Power BI reports with admin-level role management',
-                  'Supported UAT for operational changes and new feature rollouts'
+                  'Managed 4-member team focused on process optimization',
+                  'Reduced 30-35% manual workload through automation',
+                  'Created Power BI dashboards for HR, Payroll & KPI',
+                  'Coordinated with product and engineering teams',
                 ],
-                tech: ['Power BI', 'SQL Server', 'ETL', 'BMC Remedy', 'JIRA', 'Azure DevOps']
               },
               {
                 title: 'Associate Data Engineer',
                 company: 'Indus Towers Pvt. Ltd.',
                 period: 'Apr 2022 - Mar 2023',
-                description: 'Data Engineering | Infrastructure Support',
+                description: 'Data Engineering | Infrastructure',
                 highlights: [
-                  'Developed core skills in SQL, Power BI, Oracle BI, and Advanced Excel',
-                  'Built data pipelines and ETL processes for operational reporting',
-                  'Supported system monitoring, application deployment, and issue resolution',
-                  'Handled client queries using BMC Remedy and ESH Help Desk tools',
-                  'Worked with cross-functional teams to troubleshoot system stability',
-                  'Built reports using Power BI Desktop and Tableau',
-                  'Created data models for analytics and business intelligence'
+                  'Developed SQL, Power BI, and Advanced Excel skills',
+                  'Built data pipelines and ETL processes',
+                  'Supported system monitoring and deployment',
+                  'Built reports using Power BI and Tableau',
                 ],
-                tech: ['Power BI', 'SQL Server', 'Tableau', 'ETL', 'Excel', 'SharePoint']
-              }
+              },
             ].map((job, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.2 }}
-                className="group border-l-4 border-purple-500 pl-8 py-4 hover:border-cyan-500 transition-colors relative"
+                className="group relative p-8 rounded-2xl border border-purple-500/20 hover:border-purple-500/60 bg-gradient-to-br from-purple-500/5 to-cyan-500/5 hover:from-purple-500/10 hover:to-cyan-500/10 transition-all overflow-hidden"
               >
-                <div className="absolute -left-3 top-4 w-5 h-5 bg-purple-500 rounded-full group-hover:bg-cyan-500 transition-colors"></div>
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h3 className="text-2xl font-bold">{job.title}</h3>
-                    <p className="text-purple-400 font-semibold">{job.company}</p>
-                  </div>
-                  <span className="text-xs bg-purple-500/20 px-3 py-1 rounded-full text-purple-300">{job.period}</span>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 blur-3xl" />
                 </div>
-                <p className="text-gray-400 mb-4 text-sm">{job.description}</p>
-                <ul className="space-y-2 text-gray-300 text-sm mb-4">
-                  {job.highlights.map((highlight, j) => (
-                    <li key={j} className="flex gap-2">
-                      <span className="text-purple-400">▸</span>
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-2">
-                  {job.tech.map((t, j) => (
-                    <span key={j} className="px-2 py-1 bg-purple-500/20 text-purple-200 rounded text-xs">
-                      {t}
-                    </span>
+
+                <div className="relative z-10">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-cyan-400 group-hover:bg-clip-text transition-all">{job.title}</h3>
+                      <p className="text-purple-400 font-semibold mt-1">{job.company}</p>
+                    </div>
+                    <span className="px-4 py-2 rounded-full bg-purple-500/20 text-purple-300 text-sm font-semibold">{job.period}</span>
+                  </div>
+
+                  <p className="text-gray-400 mb-4">{job.description}</p>
+
+                  <ul className="space-y-2">
+                    {job.highlights.map((highlight, j) => (
+                      <li key={j} className="text-gray-300 flex gap-3">
+                        <span className="text-purple-400 font-bold">▹</span>
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECTS SECTION */}
+      <section id="projects" className="relative py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="mb-16"
+          >
+            <h2 className="text-5xl font-black mb-4">
+              <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                Projects
+              </span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full" />
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                title: 'HR Analytics Dashboard',
+                description: 'Built interactive Power BI dashboard for HR analytics and KPI tracking',
+                tech: ['Power BI', 'SQL', 'Excel'],
+                impact: '40% faster reporting',
+              },
+              {
+                title: 'Transaction Monitoring System',
+                description: 'Enhanced transaction flow monitoring and settlement issue tracking',
+                tech: ['SQL Server', 'Power BI', 'ETL'],
+                impact: '35% efficiency gain',
+              },
+              {
+                title: 'Operational MIS Platform',
+                description: 'End-to-end BI solution for operations with real-time KPI monitoring',
+                tech: ['Power BI', 'SQL Server', 'DAX'],
+                impact: 'Enterprise adoption',
+              },
+              {
+                title: 'Data Quality Framework',
+                description: 'Implemented governance and data quality checks for compliance',
+                tech: ['SQL', 'Python', 'Tableau'],
+                impact: '99.5% accuracy',
+              },
+            ].map((project, i) => (
+              <motion.a
+                key={i}
+                href="#"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="group relative p-8 rounded-2xl border border-purple-500/20 hover:border-purple-500/60 bg-gradient-to-br from-purple-500/5 to-cyan-500/5 hover:from-purple-500/10 hover:to-cyan-500/10 transition-all overflow-hidden cursor-pointer"
+              >
+                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-full blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+
+                <div className="relative z-10 space-y-4">
+                  <div className="flex justify-between items-start">
+                    <h3 className="text-2xl font-bold text-white flex-1">{project.title}</h3>
+                    <ExternalLink className="w-5 h-5 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+
+                  <p className="text-gray-400 text-sm leading-relaxed">{project.description}</p>
+
+                  <div className="flex flex-wrap gap-2 pt-4">
+                    {project.tech.map((t, j) => (
+                      <span key={j} className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-semibold">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="pt-4 border-t border-purple-500/20">
+                    <p className="text-cyan-400 font-semibold text-sm">{project.impact}</p>
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SKILLS SECTION */}
+      <section className="relative py-32 px-6 bg-gradient-to-b from-black via-purple-950/10 to-black">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="mb-16"
+          >
+            <h2 className="text-5xl font-black mb-4">
+              <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                Skills & Expertise
+              </span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full" />
+          </motion.div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { title: 'Analytics & BI', skills: ['Power BI', 'Tableau', 'Oracle BI', 'Excel'] },
+              { title: 'Databases', skills: ['SQL Server', 'MySQL', 'ETL', 'Data Warehouse'] },
+              { title: 'Tools', skills: ['BMC Remedy', 'JIRA', 'Azure DevOps', 'SharePoint'] },
+              { title: 'Programming', skills: ['Python', 'SQL', 'DAX', 'Power Query'] },
+            ].map((category, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="group p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border border-purple-500/20 hover:border-purple-500/60 hover:from-purple-500/20 hover:to-cyan-500/20 transition-all"
+              >
+                <h3 className="font-bold text-white mb-4 text-lg">{category.title}</h3>
+                <div className="space-y-2">
+                  {category.skills.map((skill, j) => (
+                    <div key={j} className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                      <span className="text-purple-400">◆</span> {skill}
+                    </div>
                   ))}
                 </div>
               </motion.div>
@@ -284,243 +498,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SKILLS SECTION */}
-      <section className="relative py-24 bg-black/30">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-5xl font-black bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-16"
-          >
-            Technical Skills
-          </motion.h2>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {[
-              {
-                icon: '📊',
-                title: 'Analytics & BI',
-                skills: ['Power BI', 'Tableau', 'Oracle BI', 'Excel', 'Dashboards', 'KPI Tracking']
-              },
-              {
-                icon: '⚡',
-                title: 'Databases & ETL',
-                skills: ['SQL Server', 'MySQL', 'Data Warehouse', 'ETL Pipelines', 'Data Modeling', 'Query Optimization']
-              },
-              {
-                icon: '🚀',
-                title: 'Business Tools',
-                skills: ['BMC Remedy', 'JIRA', 'SharePoint', 'Confluence', 'Azure DevOps', 'UAT Tools']
-              },
-              {
-                icon: '💻',
-                title: 'Programming',
-                skills: ['Python', 'SQL', 'DAX', 'Power Query', 'VBA', 'Data Manipulation']
-              }
-            ].map((category, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -5 }}
-                className="group p-6 bg-gradient-to-br from-purple-500/5 to-cyan-500/5 border border-purple-500/20 rounded-2xl hover:border-purple-500/60 transition-all"
-              >
-                <h3 className="text-lg font-bold mb-4">{category.icon} {category.title}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, j) => (
-                    <span key={j} className="px-3 py-1 bg-purple-500/20 text-purple-200 rounded-full text-xs font-medium group-hover:bg-cyan-500/20 group-hover:text-cyan-200 transition-all">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CORE COMPETENCIES SECTION */}
-      <section className="relative py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-5xl font-black bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-16"
-          >
-            Core Competencies
-          </motion.h2>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {[
-              'Daily Operations Management',
-              'Transaction Workflow Monitoring',
-              'Escalation Handling & Resolution',
-              'Payment Operations & Reconciliation',
-              'Settlement Monitoring',
-              'SLA Tracking & Compliance',
-              'Operational Risk Controls',
-              'Process Optimization & SOP Development',
-              'Quality Checks & Data Governance',
-              'UAT Coordination',
-              'Cross-functional Team Leadership',
-              'Automation Implementation'
-            ].map((competency, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ x: 5 }}
-                className="p-4 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 border border-purple-500/20 rounded-lg hover:border-purple-500/60 transition-all"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                  <span className="text-gray-300">{competency}</span>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* PROJECTS SECTION */}
-      <section id="projects" className="relative py-24 bg-black/30">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-5xl font-black bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-16"
-          >
-            Key Projects & Achievements
-          </motion.h2>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="grid md:grid-cols-2 gap-8"
-          >
-            {[
-              {
-                title: 'HR Analytics Dashboard',
-                description: 'Built interactive Power BI dashboard for HR Payroll, Attendance KPI tracking, and Team Attrition analysis. Enabled self-service reporting for management.',
-                tech: ['Power BI', 'SQL Server', 'Excel', 'DAX'],
-                impact: 'Faster HR reporting & insights',
-                metrics: 'Real-time tracking'
-              },
-              {
-                title: 'Transaction Monitoring System',
-                description: 'Implemented enhanced transaction flow monitoring and settlement issue tracking. Improved escalation handling accuracy and reduced operational delays.',
-                tech: ['SQL Server', 'Power BI', 'ETL', 'BMC Remedy'],
-                impact: '30-35% efficiency gain',
-                metrics: 'Reduced manual work significantly'
-              },
-              {
-                title: 'Operational MIS Platform',
-                description: 'Designed end-to-end BI solution for operations management with real-time KPI monitoring, SLA tracking, and compliance reporting.',
-                tech: ['Power BI Service', 'SQL Server', 'DAX', 'Azure DevOps'],
-                impact: 'Enterprise-wide adoption',
-                metrics: 'Cross-team visibility & insights'
-              },
-              {
-                title: 'Data Quality Framework',
-                description: 'Implemented governance and data quality checks for compliance and audit readiness. Created automated data validation pipelines.',
-                tech: ['SQL', 'Python', 'Tableau', 'ETL'],
-                impact: '99.5% data accuracy',
-                metrics: 'Audit-ready compliance'
-              }
-            ].map((project, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -5 }}
-                className="group relative p-8 border border-purple-500/20 rounded-2xl hover:border-purple-500/60 bg-gradient-to-br from-purple-500/5 to-cyan-500/5 transition-all hover:shadow-lg hover:shadow-purple-500/20"
-              >
-                <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                <p className="text-gray-400 text-sm mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((t, j) => (
-                    <span key={j} className="px-2 py-1 bg-purple-500/30 text-purple-200 rounded text-xs font-medium">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <div className="pt-4 border-t border-purple-500/20">
-                  <p className="text-sm text-cyan-400 font-semibold">{project.impact}</p>
-                  <p className="text-xs text-gray-500 mt-1">{project.metrics}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* EDUCATION SECTION */}
-      <section className="relative py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-5xl font-black bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-12"
-          >
-            Education
-          </motion.h2>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="space-y-6"
-          >
-            {[
-              {
-                degree: 'MCA - Computer Science',
-                school: 'Chandigarh University',
-                year: 'Expected 2026',
-                icon: '🎓'
-              },
-              {
-                degree: 'BCA - Computer Science',
-                school: 'Poornima University, Jaipur',
-                year: '2021',
-                icon: '📚'
-              },
-              {
-                degree: '12th (PCM)',
-                school: 'S.A.B Inter College, Agra',
-                year: '2018',
-                icon: '✏️'
-              }
-            ].map((edu, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ x: 5 }}
-                className="group border-l-4 border-purple-500 pl-8 py-4 hover:border-cyan-500 transition-colors relative"
-              >
-                <div className="absolute -left-3 top-4 w-5 h-5 bg-purple-500 rounded-full group-hover:bg-cyan-500 transition-colors"></div>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-xl font-bold">{edu.degree}</h3>
-                    <p className="text-purple-400 font-semibold text-sm mt-1">{edu.school}</p>
-                  </div>
-                  <span className="text-xs bg-purple-500/20 px-3 py-1 rounded-full text-purple-300">{edu.year}</span>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* CONTACT SECTION */}
-      <section id="contact" className="relative py-24 bg-black/30">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <motion.h2
+      <section className="relative py-32 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-5xl font-black bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-8"
+            className="mb-16"
           >
-            Let's Connect
-          </motion.h2>
+            <h2 className="text-5xl font-black mb-4">
+              <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                Let's Work Together
+              </span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full mx-auto" />
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0 }}
@@ -536,81 +528,59 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-4 mb-12"
+            className="flex flex-wrap justify-center gap-6 mb-12"
           >
-            <a
-              href="mailto:neerajkankauriya@gmail.com"
-              className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/40 rounded-lg hover:border-purple-500 transition-all hover:shadow-lg hover:shadow-purple-500/20"
-            >
-              <Mail size={20} />
-              <span className="font-semibold">Email</span>
-            </a>
-
-            <a
-              href="https://linkedin.com/in/neeraj-sharma-27481b190"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/40 rounded-lg hover:border-blue-500 transition-all hover:shadow-lg hover:shadow-blue-500/20"
-            >
-              <Linkedin size={20} />
-              <span className="font-semibold">LinkedIn</span>
-            </a>
-
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-500/20 to-white/20 border border-gray-500/40 rounded-lg hover:border-gray-500 transition-all hover:shadow-lg hover:shadow-gray-500/20"
-            >
-              <Github size={20} />
-              <span className="font-semibold">GitHub</span>
-            </a>
+            {[
+              { icon: Mail, label: 'Email', href: 'mailto:neerajkankauriya@gmail.com', color: 'from-purple-500 to-cyan-500' },
+              { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/neeraj-sharma-27481b190', color: 'from-blue-500 to-cyan-500' },
+              { icon: Github, label: 'GitHub', href: 'https://github.com', color: 'from-gray-500 to-gray-600' },
+            ].map((btn, i) => (
+              <motion.a
+                key={i}
+                href={btn.href}
+                target={btn.label !== 'Email' ? '_blank' : undefined}
+                rel={btn.label !== 'Email' ? 'noopener noreferrer' : undefined}
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className={`group relative px-8 py-4 rounded-xl font-semibold text-white overflow-hidden flex items-center gap-3`}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-r ${btn.color} rounded-xl opacity-75 group-hover:opacity-100 transition-opacity duration-300 blur-md`} />
+                <div className={`absolute inset-0 bg-gradient-to-r ${btn.color} rounded-xl`} />
+                <btn.icon size={20} className="relative z-10" />
+                <span className="relative z-10">{btn.label}</span>
+              </motion.a>
+            ))}
           </motion.div>
 
-          <div className="space-y-2">
-            <p className="text-gray-400">
-              Email: <a href="mailto:neerajkankauriya@gmail.com" className="text-purple-400 hover:text-cyan-400 font-semibold transition-colors">neerajkankauriya@gmail.com</a>
-            </p>
-            <p className="text-gray-400">
-              Phone: <span className="text-purple-400 font-semibold">+91-7895272496</span>
-            </p>
-            <p className="text-gray-400">
-              Location: <span className="text-purple-400 font-semibold">Gurugram, Haryana</span>
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="space-y-3"
+          >
+            <p className="text-gray-400">📧 neerajkankauriya@gmail.com</p>
+            <p className="text-gray-400">📱 +91-7895272496</p>
+            <p className="text-gray-400">📍 Gurugram, Haryana, India</p>
+          </motion.div>
         </div>
       </section>
 
       {/* FOOTER */}
       <footer className="relative border-t border-purple-500/20 py-8 px-6 bg-black/50">
         <div className="max-w-6xl mx-auto text-center text-gray-500 text-sm">
-          <p>© 2025 Neeraj Sharma. Built with Next.js, React, Framer Motion, and Tailwind CSS. Deployed on Vercel.</p>
+          <p>© 2025 Neeraj Sharma. Built with Next.js, React, Framer Motion & Tailwind CSS.</p>
         </div>
       </footer>
 
       <style jsx>{`
-        @keyframes blob {
-          0%, 100% {
-            transform: translate(0, 0) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
         }
 
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-
-        .animation-delay-4000 {
-          animation-delay: 4s;
+        @keyframes glow {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 1; }
         }
       `}</style>
     </div>
