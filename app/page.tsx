@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import CursorGlow from "./components/CursorGlow";
 import { Mail, Linkedin, Github, Download, Code2, Zap, TrendingUp, BookOpen, ArrowRight, ExternalLink, Brain, Cpu } from "lucide-react";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
@@ -133,20 +134,21 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="relative min-h-screen pt-32 flex items-center justify-center">
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          {/* Main Hero Content */}
+        <div className="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
+          
+          {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center space-y-12"
+            className="space-y-8"
           >
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="flex justify-center"
+              className="inline-block"
             >
               <span className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/30 text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 flex items-center gap-2">
                 <Brain size={16} className="text-cyan-400" />
@@ -162,7 +164,7 @@ export default function Home() {
                 </span>
               </h1>
               
-              <div className="flex flex-col items-center gap-2">
+              <div className="flex flex-col items-start gap-2">
                 <h2 className="text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 font-bold">
                   Senior Operations Analyst
                 </h2>
@@ -175,7 +177,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto"
+              className="text-lg text-gray-400 leading-relaxed max-w-2xl"
             >
               3+ years driving operational excellence in FinTech. Specialized in transaction monitoring, process automation, and building scalable Power BI dashboards using data-driven ML approaches. Led teams to deliver 30-35% efficiency gains through intelligent automation and predictive analytics.
             </motion.p>
@@ -185,7 +187,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto"
+              className="grid grid-cols-2 gap-4"
             >
               {[
                 { label: '3+', value: 'Years Experience', icon: <Cpu size={16} /> },
@@ -215,7 +217,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="flex flex-wrap justify-center gap-4 pt-8"
+              className="flex flex-wrap gap-4 pt-4"
             >
               {/* Primary Button - Neon Glow */}
               <motion.a
@@ -263,23 +265,43 @@ export default function Home() {
                 </span>
               </motion.a>
             </motion.div>
+          </motion.div>
 
-            {/* Tech Stack Preview */}
+          {/* Right Side - Profile Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, x: 40 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="hidden md:flex justify-center items-center"
+          >
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="grid grid-cols-4 md:grid-cols-8 gap-3 max-w-4xl mx-auto pt-8"
+              whileHover={{ y: -10, scale: 1.05 }}
+              className="relative group"
             >
-              {['Power BI', 'SQL', 'Python', 'Analytics', 'ETL', 'Azure', 'Tableau', 'ML'].map((tech, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  className="px-3 py-2 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/30 hover:border-cyan-500/60 text-xs font-semibold text-cyan-300 text-center transition-all"
-                >
-                  {tech}
-                </motion.div>
-              ))}
+              {/* Glow effect behind image */}
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-3xl opacity-0 group-hover:opacity-30 blur-2xl transition-all duration-300 -z-10" />
+              
+              {/* Image container with gradient border */}
+              <div className="relative p-1 rounded-3xl bg-gradient-to-br from-cyan-500 to-blue-500">
+                <div className="relative w-80 h-80 rounded-3xl overflow-hidden bg-black">
+                  <Image
+                    src="/NS_profile.png"
+                    alt="Neeraj Sharma"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
+
+              {/* Floating badge */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute -bottom-4 -right-4 px-6 py-3 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-sm shadow-lg"
+              >
+                AI/ML Expert
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
@@ -372,10 +394,10 @@ export default function Home() {
                 period: 'Apr 2022 - Mar 2023',
                 description: 'Data Engineering | Infrastructure',
                 highlights: [
-                  'Developed SQL, Power BI, and Advanced Excel skills for data analysis',
+                  'Developed SQL, Power BI, Excel/VBA and Advanced Excel skills for data analysis',
                   'Built data pipelines and ETL processes for operational reporting',
                   'Supported system monitoring and deployment with data insights',
-                  'Built reports using Power BI and Tableau for predictive analytics',
+                  'Built reports using Power BI and Excel for predictive analytics',
                   'Created data models for ML-ready analytics platforms',
                 ],
               },
@@ -437,8 +459,8 @@ export default function Home() {
             {[
               {
                 title: 'HR Analytics Dashboard (ML-Enhanced)',
-                description: 'Built interactive Power BI dashboard with predictive models for HR analytics, attrition forecasting, and KPI tracking',
-                tech: ['Power BI', 'SQL', 'Python', 'ML Models'],
+                description: 'Built interactive Power BI dashboard with predictive models for HR analytics, attrition forecasting, and KPI tracking using Excel/VBA macros for automation',
+                tech: ['Power BI', 'SQL', 'Excel/VBA', 'ML Models'],
                 impact: '40% faster reporting',
               },
               {
@@ -455,8 +477,8 @@ export default function Home() {
               },
               {
                 title: 'Data Quality & ML Framework',
-                description: 'Implemented governance, data quality checks, and ML pipelines for compliance and predictive insights',
-                tech: ['SQL', 'Python', 'Tableau', 'ML'],
+                description: 'Implemented governance, data quality checks, and ML pipelines with Excel/VBA automation for compliance',
+                tech: ['SQL', 'Python', 'Excel/VBA', 'ML'],
                 impact: '99.5% accuracy',
               },
             ].map((project, i) => (
@@ -515,7 +537,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { title: '📊 BI & Analytics', skills: ['Power BI', 'Tableau', 'Oracle BI', 'Data Viz'] },
+              { title: '📊 BI & Analytics', skills: ['Power BI', 'Excel/VBA', 'Oracle BI', 'Data Viz'] },
               { title: '⚡ Data & ETL', skills: ['SQL Server', 'MySQL', 'ETL', 'Data Warehouse'] },
               { title: '🚀 Tools & Platforms', skills: ['Python', 'Azure DevOps', 'JIRA', 'BMC Remedy'] },
               { title: '🧠 ML & AI', skills: ['Predictive ML', 'Data Science', 'Anomaly Detection', 'DAX'] },
