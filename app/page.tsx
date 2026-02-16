@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import CursorGlow from "./components/CursorGlow";
 import { Mail, Linkedin, Github, Download, Code2, Zap, TrendingUp, BookOpen, ArrowRight, ExternalLink, Brain, Cpu, Workflow } from "lucide-react";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
@@ -90,19 +91,21 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="relative min-h-screen pt-32 flex items-center justify-center">
-        <div className="max-w-6xl mx-auto px-6 w-full">
+        <div className="max-w-6xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
+          
+          {/* LEFT SIDE - Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center space-y-8"
+            className="space-y-8"
           >
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-block mx-auto"
+              className="inline-block"
             >
               <span className="px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 text-sm font-semibold text-gray-300">
                 Operations Analyst | Product Analyst | Business Intelligence
@@ -130,7 +133,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto"
+              className="text-lg text-gray-400 leading-relaxed max-w-2xl"
             >
               3+ years specializing in business automation, operational analytics, and AI/ML implementation. Proven expertise in process optimization, data-driven decision making, and leading teams to deliver measurable business impact.
             </motion.p>
@@ -140,7 +143,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto"
+              className="grid grid-cols-2 gap-4"
             >
               {[
                 { label: '3+', value: 'Years' },
@@ -166,7 +169,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="flex flex-wrap justify-center gap-4 pt-4"
+              className="flex flex-wrap gap-4 pt-4"
             >
               <motion.a
                 href="mailto:neerajkankauriya@gmail.com"
@@ -197,6 +200,30 @@ export default function Home() {
                 <Download size={18} />
                 CV
               </motion.a>
+            </motion.div>
+          </motion.div>
+
+          {/* RIGHT SIDE - Profile Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, x: 40 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="hidden md:flex justify-center items-center"
+          >
+            <motion.div
+              whileHover={{ y: -10 }}
+              className="relative group"
+            >
+              {/* Image container */}
+              <div className="relative w-80 h-80 rounded-2xl overflow-hidden border-2 border-purple-500/30 group-hover:border-purple-500/60 transition-all">
+                <Image
+                  src="/profile.png"
+                  alt="Neeraj Sharma"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -587,9 +614,18 @@ export default function Home() {
               LinkedIn
             </a>
             <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 border border-cyan-400/50 rounded-lg font-semibold hover:bg-cyan-400/10 transition-colors flex items-center gap-2"
+            >
+              <Github size={18} />
+              GitHub
+            </a>
+            <a
               href="/Neeraj_Sharma_CV.pdf"
               download
-              className="px-8 py-3 border border-cyan-400/50 rounded-lg font-semibold hover:bg-cyan-400/10 transition-colors flex items-center gap-2"
+              className="px-8 py-3 border border-gray-400/50 rounded-lg font-semibold hover:bg-gray-400/10 transition-colors flex items-center gap-2"
             >
               <Download size={18} />
               CV
