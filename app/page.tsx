@@ -90,15 +90,15 @@ export default function Home() {
       </div>
 
       {/* HERO SECTION */}
-      <section className="relative min-h-screen pt-32 flex items-center justify-center">
-        <div className="max-w-6xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
+      <section className="relative min-h-screen pt-20 md:pt-32 flex items-center justify-center">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           
           {/* LEFT SIDE - Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-8 text-center md:text-left"
           >
             {/* Badge */}
             <motion.div
@@ -208,14 +208,14 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.9, x: 40 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden md:flex justify-center items-center"
+            className="flex justify-center items-center mt-8 md:mt-0"
           >
             <motion.div
               whileHover={{ y: -10 }}
               className="relative group"
             >
-              {/* Image container - Rounded & Smaller */}
-              <div className="relative w-64 h-64 rounded-full overflow-hidden border-2 border-purple-500/30 group-hover:border-purple-500/60 transition-all">
+              {/* Image container - Responsive size */}
+              <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-purple-500/30 group-hover:border-purple-500/60 transition-all">
                 <Image
                   src="/profile.png"
                   alt="Neeraj Sharma"
