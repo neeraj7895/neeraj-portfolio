@@ -544,7 +544,7 @@ export default function Home() {
 
           <div className="space-y-4">
             {[
-              { degree: 'MCA - Computer Science', school: 'Chandigarh University', year: 'Completed 2026' },
+              { degree: 'MCA - Computer Science', school: 'Chandigarh University', year: '2026' },
               { degree: 'BCA - Computer Science', school: 'Poornima University, Jaipur', year: '2021' },
               { degree: '12th (PCM)', school: 'S.A.B Inter College, Agra', year: '2018' }
             ].map((edu, i) => (
