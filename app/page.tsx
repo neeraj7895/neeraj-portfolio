@@ -217,7 +217,7 @@ export default function Home() {
               {/* Image container - Responsive size */}
               <div className="relative w-50 h-50 md:w-60 md:h-60 rounded-full overflow-hidden border-2 border-purple-500/30 group-hover:border-purple-500/60 transition-all">
                 <Image
-                  src="/profile.png"
+                  src="/profil.png"
                   alt="Neeraj Sharma"
                   fill
                   className="object-cover"
