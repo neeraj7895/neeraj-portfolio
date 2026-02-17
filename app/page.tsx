@@ -215,7 +215,7 @@ export default function Home() {
               className="relative group"
             >
               {/* Image container - Responsive size */}
-              <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-purple-500/30 group-hover:border-purple-500/60 transition-all">
+              <div className="relative w-50 h-50 md:w-60 md:h-60 rounded-full overflow-hidden border-2 border-purple-500/30 group-hover:border-purple-500/60 transition-all">
                 <Image
                   src="/profile.png"
                   alt="Neeraj Sharma"
